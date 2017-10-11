@@ -1,0 +1,39 @@
+<div class="col-lg-4">
+  <app-filter [filter]="filter" (submit)="getAdvertisements()"></app-filter>
+</div>
+
+<div class="col-lg-8">
+  <h2>Hirdetések</h2>
+
+  <div class="row">
+    <div class="col-lg-6 advertisement-box" *ngFor="let advertisement of advertisements">
+      <a [routerLink]="['details', advertisement.id]">
+        <img class="img-responsive" [src]="advertisement.imageUrl ?
+          '/images/' + advertisement.imageUrl : 'https://via.placeholder.com/340x255'" />
+      </a>
+
+      <div class="row">
+        <h3 class="col-lg-6">{{advertisement.price}} MFt</h3>
+        <h3 class="col-lg-6 text-right">{{advertisement.size}} m
+          <sup>2</sup>
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="pull-left">
+            {{advertisement.city?.zip}} {{advertisement.city?.name}}
+          </p>
+          <p class="pull-right">{{advertisement.address}}</p>
+        </div>
+      </div>
+
+      <p>{{advertisement.advertisementType | advertisementType}}</p>
+
+      <dl>
+        <dt class="pull-left">Szobák</dt>
+        <dd class="pull-left">{{advertisement.room}} + {{advertisement.halfRoom}}</dd>
+      </dl>
+    </div>
+  </div>
+</div>
